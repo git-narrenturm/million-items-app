@@ -1,0 +1,20 @@
+.container {
+  height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.listItem {
+  padding: 8px;
+  margin-bottom: 4px;
+  background-color: #f9f9ff;
+  border: 1px solid #ccc;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  margin-bottom: 1rem;
+  width: 100%;
+}
