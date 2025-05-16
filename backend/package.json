@@ -24,5 +24,6 @@
     "start-dev": "npx tsx server.ts",
     "lint": "eslint . --ext .ts,.tsx",
     "lint-fix": "eslint . --ext .ts,.tsx --fix"
-  }
+  },
+  "proxy": "http://localhost:3000"
 }
