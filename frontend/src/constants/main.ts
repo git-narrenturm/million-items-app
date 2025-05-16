@@ -1,3 +1,3 @@
-export const appBaseUrl = "http://localhost:4000"
+export const appBaseUrl = process.env.REACT_APP_BACKEND;
 
 export const listSize = 20;
