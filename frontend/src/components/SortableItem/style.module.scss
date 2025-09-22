@@ -37,3 +37,15 @@ p {
   color: #6b7280;
   margin: 1rem 0;
 }
+
+.topItem {
+  background-color: #fff4e5; // highlight top items
+  border-left: 4px solid #ff9800;
+}
+
+.topLabel {
+  margin-left: 8px;
+  font-size: 0.8rem;
+  color: #ff9800;
+  font-weight: bold;
+}

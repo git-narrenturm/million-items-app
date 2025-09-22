@@ -1,2 +1,2 @@
-export const selectedItems: Set<number> = new Set();
-export const sortOrder: number[] = [];
+export const selectedItems = new Set<number>();
+export const dynamicOrder = new Map<number, number>();

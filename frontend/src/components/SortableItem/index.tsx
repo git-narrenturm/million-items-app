@@ -1,5 +1,4 @@
 import styles from "./style.module.scss";
-
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
@@ -7,11 +6,17 @@ type SortableItemProps = {
   id: number;
   name: string;
   checked: boolean;
+  orderNum: number;
   onSelect: () => void;
 };
 
-const SortableItem = (props: SortableItemProps) => {
-  const { id, name, checked, onSelect } = props;
+const SortableItem = ({
+  id,
+  name,
+  checked,
+  orderNum,
+  onSelect,
+}: SortableItemProps) => {
   const {
     attributes,
     listeners,
@@ -36,7 +41,8 @@ const SortableItem = (props: SortableItemProps) => {
       className={styles.listItem}
     >
       <input type="checkbox" checked={checked} onChange={onSelect} />
-      {name}
+      <span>{orderNum}.</span>
+      <span>{name}</span>
     </div>
   );
 };

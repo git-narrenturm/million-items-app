@@ -6,7 +6,11 @@
     "esModuleInterop": true,
     "outDir": "./dist",
     "rootDir": "./",
-    "strict": true
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true
   },
   "include": ["./**/*.ts"]
 }
