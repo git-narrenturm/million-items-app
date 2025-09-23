@@ -5,24 +5,32 @@ type ItemOrder = { id: number; orderNum: number };
 
 const registerSort = (app: Express) => {
   app.post('/sort', (req, res) => {
-    const { order } = req.body as { order?: ItemOrder[] };
+    const { order, movedId } = req.body as { order?: ItemOrder[]; movedId?: number };
     if (!Array.isArray(order)) {
       return res.status(400).json({ error: 'Expected order array' });
     }
 
-    const sortedOrder = [...order].sort((a, b) => a.orderNum - b.orderNum);
-
-    for (let i = 0; i < sortedOrder.length; i++) {
-      const { id, orderNum } = sortedOrder[i];
+    for (const { id, orderNum } of order) {
       dynamicOrder.set(id, orderNum);
     }
 
-    const allIds = Array.from(dynamicOrder.keys())
-      .map((id) => ({ id, orderNum: dynamicOrder.get(id)! }))
+    if (movedId !== undefined) {
+      const movedOrderNum = dynamicOrder.get(movedId);
+      if (movedOrderNum !== undefined) {
+        for (const [id, num] of dynamicOrder.entries()) {
+          if (id !== movedId && num >= movedOrderNum) {
+            dynamicOrder.set(id, num + 1);
+          }
+        }
+      }
+    }
+
+    const allItems = Array.from(dynamicOrder.entries())
+      .map(([id, orderNum]) => ({ id, orderNum }))
       .sort((a, b) => a.orderNum - b.orderNum);
 
     let counter = 1;
-    for (const item of allIds) {
+    for (const item of allItems) {
       dynamicOrder.set(item.id, counter++);
     }
 

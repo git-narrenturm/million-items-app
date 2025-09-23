@@ -123,11 +123,11 @@ const ItemsList = () => {
       const updated = arrayMove(prev, oldIndex, newIndex);
 
       const orderNums = updated.map((item) => item.orderNum);
-
+      
       let newOrderNums = [...orderNums];
 
-      let insertBeforeOrder =
-        newIndex === 0 ? -1 : updated[newIndex - 1].orderNum;
+      const insertBeforeOrder =
+        newIndex === 0 ? 0 : updated[newIndex - 1].orderNum;
 
       newOrderNums[newIndex] = insertBeforeOrder + 1;
 
@@ -146,7 +146,7 @@ const ItemsList = () => {
         id: i.id,
         orderNum: i.orderNum,
       }));
-      postSortOrder({ order: newOrder });
+      postSortOrder({ order: newOrder, movedId: active.id });
 
       return updatedWithOrderNum;
     });

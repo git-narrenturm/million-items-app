@@ -26,11 +26,11 @@ export const itemsApi = createApi({
         body: { selected },
       }),
     }),
-    postSortOrder: builder.mutation<void, { order: { id: number; orderNum: number; }[] }>({
-      query: ({ order }) => ({
+    postSortOrder: builder.mutation<void, { order: { id: number; orderNum: number; }[], movedId: number }>({
+      query: ({ order, movedId }) => ({
         url: `/sort`,
         method: "POST",
-        body: { order },
+        body: { order, movedId },
       }),
     }),
     postResetSortOrder: builder.mutation<void, void>({
