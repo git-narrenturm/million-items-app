@@ -37,6 +37,12 @@ const registerItems = (app: Express) => {
         [searchStr, lim, off]
       );
 
+      if (dynamicOrder.size === 0) {
+        rows.forEach((row, index) => {
+          dynamicOrder.set(row.id, off + index + 1);
+        });
+      }
+
       const items: Item[] = rows.map((row) => ({
         ...row,
         orderNum: dynamicOrder.get(row.id) ?? row.id,

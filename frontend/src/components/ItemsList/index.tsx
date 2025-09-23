@@ -90,14 +90,14 @@ const ItemsList = () => {
   };
 
   const handleSortReset = async () => {
-    await postResetSortOrder();
+    await postResetSortOrder().unwrap();
     setItemList([]);
     setOffset(0);
     fetchMoreItems(0);
   };
 
   const handleSelectReset = async () => {
-    await postResetSelection();
+    await postResetSelection().unwrap();
     setSelected(new Set());
     setItemList([]);
     setOffset(0);
@@ -127,7 +127,7 @@ const ItemsList = () => {
       let newOrderNums = [...orderNums];
 
       let insertBeforeOrder =
-        newIndex === 0 ? 0 : updated[newIndex - 1].orderNum;
+        newIndex === 0 ? -1 : updated[newIndex - 1].orderNum;
 
       newOrderNums[newIndex] = insertBeforeOrder + 1;
 
